@@ -8,7 +8,7 @@ import { Menu, MenuProps } from "./cells/menu";
 export type FieldConfig = {
   linkKey?: string;
   header?: string;
-  type?: "member-name" | "uuid" | "menu" | "role";
+  type?: "menu";
   charLimit?: number;
   visableCharacters?: number;
   headerClassName?: string;
