@@ -40,6 +40,8 @@ type TableProps<T> = {
   customColumns?: ColumnDef<T>[];
   filterableColumns?: (keyof T)[];
   filterPlaceholder?: string;
+  pagination?: boolean;
+  paginationOptions?: { pageSize: number };
   loading?: boolean;
 };
 
@@ -50,6 +52,8 @@ export function Table<T>({
   customColumns = [],
   filterableColumns = [],
   filterPlaceholder = "Filter...",
+  pagination = false,
+  paginationOptions = { pageSize: 10 },
   loading = false,
 }: TableProps<T>) {
   const pathname = usePathname();
@@ -74,9 +78,12 @@ export function Table<T>({
     onSortingChange: setSorting,
     onColumnVisibilityChange: setColumnVisibility,
     getCoreRowModel: getCoreRowModel(),
-    getPaginationRowModel: getPaginationRowModel(),
     getSortedRowModel: getSortedRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
+    ...(pagination && {
+      getPaginationRowModel: getPaginationRowModel(),
+      initialState: { pagination: { pageSize: paginationOptions.pageSize } },
+    }),
     globalFilterFn: (row, columnId, filterValue) => {
       if (filterableColumns.includes(columnId as keyof T)) {
         const cellValue = row.getValue(columnId)?.toString()?.toLowerCase();
@@ -133,7 +140,7 @@ export function Table<T>({
           </TableComponent>
         </div>
 
-        <Skeleton className="mt-10 h-8 w-64 max-w-sm" />
+        {pagination && <Skeleton className="mt-10 h-8 w-64 max-w-sm" />}
       </div>
     );
   }
@@ -202,7 +209,7 @@ export function Table<T>({
         </TableComponent>
       </div>
 
-      <PaginationControls table={table} />
+      {pagination && <PaginationControls table={table} />}
     </div>
   );
 }
