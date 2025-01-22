@@ -1,6 +1,6 @@
-# DataTable Plugin
+# DataTable Lib
 
-This plugin provides a customizable data table component for your Next.js application. It supports features like pagination, sorting, filtering, and dynamic column generation.
+This lib provides a customizable data table component for your Next.js application. It supports features like pagination, sorting, filtering, and dynamic column generation.
 
 ## Features
 
@@ -14,7 +14,7 @@ This plugin provides a customizable data table component for your Next.js applic
 
 ## Installation
 
-To use this plugin, import the necessary components and set up your table as shown in the examples below.
+To use this lib, import the necessary components and set up your table as shown in the examples below.
 
 ## Usage
 
