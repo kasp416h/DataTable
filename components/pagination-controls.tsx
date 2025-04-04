@@ -1,13 +1,14 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Button } from "@/components/ui/button";
 
 import { Table } from "@tanstack/react-table";
 
-interface PaginationControlsProps {
-  table: Table<any>;
+interface PaginationControlsProps<I> {
+  table: Table<I>;
 }
 
-export const PaginationControls = ({ table }: PaginationControlsProps) => {
+export const PaginationControls = <I,>({
+  table,
+}: PaginationControlsProps<I>) => {
   return (
     <div className="mt-10 flex items-center">
       <div className="space-x-2">
